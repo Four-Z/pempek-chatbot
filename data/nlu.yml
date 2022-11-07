@@ -1,91 +1,96 @@
 version: "3.1"
 
 nlu:
-- intent: greet
+- intent: welcome_greet
   examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+    - selamat pagi
+    - selamat siang
+    - selamat sore
+    - selamat malam
+    - woi
+    - p
+    - ass
+    - assalamualaikum
+    - syalom
+    - coy
 
-- intent: goodbye
+- intent: init_pempek_request
   examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+    - saya mau pesan pempek
+    - saya mau pempek
+    - mau dong pempeknya
+    - saya ingin pempek
+    - pengen dong pempeknya
+    - pempek apa saja yang tersedia?
+    - pempek apa aja yang ada?
+    - ada pempek apa aja?
+    - pempeknya masih ada?
+    - pempeknyo ado?
+    - masi ado dk pempekny?
 
-- intent: affirm
+- intent: pesanan_request
   examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+    - Saya mau pesan 10 pempek kapal selam
+    - 10 kapal selam
 
-- intent: deny
+- intent: pesanan_change
   examples: |
+    - saya mau pempek lenjer
+    - saya mau ganti jenis pempek
+    - saya mau ganti jumlah pesanan menjadi 5
+
+- intent: response_negative
+  examples: |
+    - tidak
+    - dak
+    - tdk
     - no
     - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+    - ngga
+    - dkjd
+    - gajadi
+    - g
+    - gjd
+    - belum
+    - blm
 
-- intent: mood_great
+- intent: response_positive
   examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+    - iya
+    - y
+    - yes
+    - yo
+    - betul
+    - sip
+    - mantap
+    - ok
+    - tepat sekali
+    - tepat
+    - good
+    - nice
 
-- intent: mood_unhappy
+- intent: response_nama_telepon
   examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
+    - faris dan 088278698769
+    - faris 088278698769
 
-- intent: bot_challenge
+- intent: pesanan_ambil_di_tempat
   examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+    - diambil di tempat
+    - ambil di tempat
+    - ambil dtmpt
+    - ambl dtmpt
+    - ditempat
+    - ambil
+
+- intent: pesanan_diantar
+  examples: |
+    - diantar
+    - d antr
+    - anter aja
+    - anter ae mas
+    - anterinlah
+
+- intent: response_alamat_pengiriman
+  examples: |
+    - di jalan xxx no xx
