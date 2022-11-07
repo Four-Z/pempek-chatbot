@@ -1,33 +1,51 @@
 version: "3.1"
 
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+  - welcome_greet
+  - init_pempek_request
+  - pesanan_request
+  - pesanan_change
+  - response_negative
+  - response_positive
+  - response_nama_telepon
+  - pesanan_ambil_di_tempat
+  - pesanan_diantar
+  - response_alamat_pengiriman
 
 responses:
-  utter_greet:
-  - text: "Hey! How are you?"
+  utter_welcome_greet:
+  - text: "Halo, Selamat datang di PempekBot, Ada yang bisa saya bantu?"
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+  utter_pempek_request:
+  - text: "Baiklah, saat ini tersedia pempek:\n
+  {pempek}\n
+  Pempek jenis apa yang ingin anda pesan?"
 
-  utter_did_that_help:
-  - text: "Did that help you?"
+  utter_pempek_order_form:
+  - text: "Ok, baiklah, pesanan anda adalah\n{order}\n
+  Apakah sudah betul?"
 
-  utter_happy:
-  - text: "Great, carry on!"
+  utter_pesanan_jenis:
+  - text: "Pempek apa yang kamu mau?"
 
-  utter_goodbye:
-  - text: "Bye"
+  utter_order_confirm_negative:
+  - text: "Apa yang ingin kamu ganti?"
 
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  utter_extra_order:
+  - text: "Apakah kamu ingin menambah pesanan lagi?"
+
+  utter_name_telepon:
+  - text: "Berikut detail pesanan anda\n{order}\n
+  atas nama siapa dan berapa nomor hp anda?"
+
+  utter_pengiriman:
+  - text: "Kamu ingin pesanannya diantar atau diambil di tempat?"
+
+  utter_order_complete:
+  - text: "Baiklah, pesanan anda akan diproses dalam waktu 15 menit. Terima kasih sudah menggunakan PempekBot"
+
+  utter_alamat_pengiriman:
+  - text: "Mau diantar kemana?"
 
 session_config:
   session_expiration_time: 60
