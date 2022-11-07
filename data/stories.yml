@@ -2,29 +2,25 @@ version: "3.1"
 
 stories:
 
-- story: happy path
+- story: order path 1
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
-
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
-
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
+  - intent: welcome_greet
+  - action: utter_welcome_greet
+  - intent: init_pempek_request
+  - action: utter_pempek_request
+  - intent: pesanan_request
+  - action: utter_pempek_order_form
+  - intent: response_negative
+  - action: utter_order_confirm_negative
+  - intent: pesanan_change
+  - action: utter_pempek_order_form
+  - intent: response_positive
+  - action: utter_extra_order
+  - intent: response_negative
+  - action: utter_nama_telepon
+  - intent: response_nama_telepon
+  - action: utter_pengiriman
+  - intent: pesanan_diantar
+  - action: utter_alamat_pengiriman
+  - intent: response_alamat_pengiriman
+  - action: utter_order_complete
