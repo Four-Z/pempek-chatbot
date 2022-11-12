@@ -30,8 +30,9 @@ nlu:
 
 - intent: pesanan_request
   examples: |
-    - Saya mau pesan 10 pempek kapal selam
-    - 10 kapal selam
+    - Saya mau pesan [10](quantity) [pempek kapal selam](order_items)
+    - [7](quantity) [pempek adaan](order_items)
+    - [pempek lenjer](order_items) [3](quantity)
 
 - intent: pesanan_change
   examples: |

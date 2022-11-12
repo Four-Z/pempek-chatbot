@@ -12,17 +12,49 @@ intents:
   - pesanan_diantar
   - response_alamat_pengiriman
 
+entities:
+- order_items
+- quantity
+slots:
+  order_items:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: order_items
+  quantity:
+    type: any
+    mappings:
+    - type: from_entity
+      entity: quantity
+forms:
+  pempek_form:
+    required_slots:
+        - order_items
+        - quantity
+
 responses:
   utter_welcome_greet:
   - text: "Halo, Selamat datang di PempekBot, Ada yang bisa saya bantu?"
 
   utter_pempek_request:
   - text: "Baiklah, saat ini tersedia pempek:\n
-  {pempek}\n
+  - pempek kapal selam\n
+  - pempek adaan\n
+  - pempek bulat\n
+  - pempek telur kecil\n
+  - pempek pistel\n
+  - pempek pastel\n
+  - pempek kates\n
+  - pempek kulit\n
+  - pempek tahu\n
+  - pempek keriting\n
+  - otak-otak\n
+  - pempek lenggang\n
+  - pempek lenggang goreng\n
   Pempek jenis apa yang ingin anda pesan?"
 
   utter_pempek_order_form:
-  - text: "Ok, baiklah, pesanan anda adalah\n{order}\n
+  - text: "Ok, baiklah, pesanan anda adalah\n{quantity} {order_items}\n
   Apakah sudah betul?"
 
   utter_pesanan_jenis:
@@ -34,8 +66,8 @@ responses:
   utter_extra_order:
   - text: "Apakah kamu ingin menambah pesanan lagi?"
 
-  utter_name_telepon:
-  - text: "Berikut detail pesanan anda\n{order}\n
+  utter_nama_telepon:
+  - text: "Berikut detail pesanan anda\n{quantity} {order_items}\n
   atas nama siapa dan berapa nomor hp anda?"
 
   utter_pengiriman:

@@ -1,13 +1,21 @@
 version: "3.1"
 
 rules:
-
-- rule: Say goodbye anytime the user says goodbye
+- rule: Activate form
   steps:
-  - intent: goodbye
-  - action: utter_goodbye
+  - intent: pesanan_request
+  - action: pempek_form
+  - active_loop: pempek_form
 
-- rule: Say 'I am a bot' anytime the user challenges
+- rule: Submit form
+  condition:
+  # Condition that form is active.
+  - active_loop: pempek_form
   steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+  # Form is deactivated
+  - action: pempek_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  # The actions we want to run when the form is submitted.
+  - action: utter_pempek_order_form
