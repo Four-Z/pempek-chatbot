@@ -1,20 +1,211 @@
 version: "3.1"
 
 stories:
-- story: order path 1
-  steps:
-  - intent: welcome_greet
-  - action: utter_welcome_greet
-  - intent: init_pempek_request
-  - action: utter_pempek_request
-  - intent: pesanan_request
-  - action: pempek_form
-  - action: utter_pempek_order_form
-  - intent: response_positive
-  - action: utter_extra_order
-  - intent: response_negative
-  - action: utter_nama_telepon
-  - intent: response_nama_telepon
-  - action: utter_pengiriman
-  - intent: pesanan_ambil_di_tempat
-  - action: utter_order_complete
+  - story: story_pesanan_diambil
+    steps:
+      - intent: welcome_greet
+      - action: utter_welcome_greet
+      - intent: init_pempek_request
+      - action: utter_pempek_request
+      - intent: pesanan_request
+        entities:
+          - quantity: "10"
+          - order_items: pempek kapal selam
+      - action: pempek_form
+      - active_loop: pempek_form
+      - slot_was_set:
+          - order_items: pempek kapal selam
+      - slot_was_set:
+          - quantity: "10"
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pempek_order_form
+      - intent: response_positive
+      - action: utter_nama_telepon
+      - intent: response_nama_telepon
+        entities:
+          - name: faris
+          - phone: "088278698769"
+      - action: identitas_form
+      - active_loop: identitas_form
+      - slot_was_set:
+          - name: faris
+      - slot_was_set:
+          - phone: "088278698769"
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pengiriman
+      - intent: pesanan_ambil_di_tempat
+      - action: utter_order_complete_diambil
+      - action: action_submit_to_database
+
+  - story: story_pesanan_diantar
+    steps:
+    - intent: welcome_greet
+    - action: utter_welcome_greet
+    - intent: init_pempek_request
+    - action: utter_pempek_request
+    - intent: pesanan_request
+      entities:
+      - quantity: '10'
+      - order_items: pempek kapal selam
+    - action: pempek_form
+    - active_loop: pempek_form
+    - slot_was_set:
+      - order_items: pempek kapal selam
+    - slot_was_set:
+      - quantity: '10'
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_pempek_order_form
+    - intent: response_positive
+    - action: utter_nama_telepon
+    - intent: response_nama_telepon
+      entities:
+      - name: faris
+      - phone: '088278698769'
+    - action: identitas_form
+    - active_loop: identitas_form
+    - slot_was_set:
+      - name: faris
+    - slot_was_set:
+      - phone: '088278698769'
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_pengiriman
+    - intent: pesanan_diantar
+    - action: utter_alamat_pengiriman
+    - intent: response_alamat_pengiriman
+      entities:
+      - address: jalan melati no 10
+    - action: alamat_form
+    - active_loop: alamat_form
+    - slot_was_set:
+      - address: jalan melati no 10
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_order_complete_diantar
+    - action: action_submit_to_database
+
+  - story: interactive_story_1
+    steps:
+      - intent: welcome_greet
+      - action: utter_welcome_greet
+      - intent: init_pempek_request
+      - action: utter_pempek_request
+      - intent: pesanan_request
+        entities:
+          - quantity: "10"
+          - order_items: pempek kapal selam
+      - action: pempek_form
+      - active_loop: pempek_form
+      - slot_was_set:
+          - order_items: pempek kapal selam
+      - slot_was_set:
+          - quantity: "10"
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pempek_order_form
+      - intent: response_positive
+      - action: utter_nama_telepon
+      - intent: response_nama_telepon
+        entities:
+          - name: arya
+          - phone: "0895326375573"
+      - action: identitas_form
+      - active_loop: identitas_form
+      - slot_was_set:
+          - name: arya
+      - slot_was_set:
+          - phone: "0895326375573"
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pengiriman
+      - intent: pesanan_diantar
+      - action: utter_alamat_pengiriman
+      - intent: response_alamat_pengiriman
+        entities:
+          - address: jalan anggrek no 1
+      - action: alamat_form
+      - active_loop: alamat_form
+      - slot_was_set:
+          - address: jalan anggrek no 1
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_order_complete_diantar
+      - action: action_submit_to_database
+
+  - story: interactive_story_2
+    steps:
+      - intent: welcome_greet
+      - action: utter_welcome_greet
+      - intent: init_pempek_request
+      - action: utter_pempek_request
+      - intent: pesanan_request
+        entities:
+          - quantity: "10"
+          - order_items: pempek kapal selam
+      - action: pempek_form
+      - active_loop: pempek_form
+      - slot_was_set:
+          - order_items: pempek kapal selam
+      - slot_was_set:
+          - quantity: "10"
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pempek_order_form
+      - intent: response_negative
+      - action: utter_pempek_request
+      - intent: pesanan_request
+        entities:
+          - quantity: "4"
+          - order_items: pempek pistel
+      - action: pempek_form
+      - active_loop: pempek_form
+      - slot_was_set:
+          - order_items: pempek pistel
+      - slot_was_set:
+          - quantity: "4"
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pempek_order_form
+      - intent: response_positive
+      - action: utter_nama_telepon
+      - intent: response_nama_telepon
+        entities:
+          - name: arya
+          - phone: "0812000000000"
+      - action: identitas_form
+      - active_loop: identitas_form
+      - slot_was_set:
+          - name: arya
+      - slot_was_set:
+          - phone: "0812000000000"
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pengiriman
+      - intent: pesanan_diantar
+      - action: utter_alamat_pengiriman
+      - intent: response_alamat_pengiriman
+        entities:
+          - address: kantor pos
+      - action: alamat_form
+      - active_loop: alamat_form
+      - slot_was_set:
+          - address: kantor pos
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_order_complete_diantar
+      - action: action_submit_to_database

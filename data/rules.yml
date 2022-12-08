@@ -1,21 +1,81 @@
 version: "3.1"
 
 rules:
-- rule: Activate form
-  steps:
-  - intent: pesanan_request
-  - action: pempek_form
-  - active_loop: pempek_form
+  - rule: Greet the user in Telegram
+    steps:
+      - intent: start
+      - action: utter_welcome_greet
 
-- rule: Submit form
-  condition:
-  # Condition that form is active.
-  - active_loop: pempek_form
-  steps:
-  # Form is deactivated
-  - action: pempek_form
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  # The actions we want to run when the form is submitted.
-  - action: utter_pempek_order_form
+  - rule: if response negative
+    steps:
+      - intent: response_negative
+      - action: utter_pempek_request
+  
+  - rule: if pesanan diantar
+    steps:
+      - intent: pesanan_diantar
+      - action: utter_alamat_pengiriman
+  
+  - rule: if pesanan diambil
+    steps:
+      - intent: pesanan_ambil_di_tempat
+      - action: utter_order_complete_diambil
+      - action: action_submit_to_database
+
+  - rule: Activate form
+    steps:
+      - intent: pesanan_request
+      - action: pempek_form
+      - active_loop: pempek_form
+
+  - rule: Submit form
+    condition:
+      # Condition that form is active.
+      - active_loop: pempek_form
+    steps:
+      # Form is deactivated
+      - action: pempek_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      # The actions we want to run when the form is submitted.
+      - action: utter_pempek_order_form
+
+  - rule: Activate form identitas
+    steps:
+      - intent: response_nama_telepon
+      - action: identitas_form
+      - active_loop: identitas_form
+
+  - rule: Submit form identitas
+    condition:
+      # Condition that form is active.
+      - active_loop: identitas_form
+    steps:
+      # Form is deactivated
+      - action: identitas_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      # The actions we want to run when the form is submitted.
+      - action: utter_pengiriman
+
+  - rule: Activate form alamat
+    steps:
+      - intent: response_alamat_pengiriman
+      - action: alamat_form
+      - active_loop: alamat_form
+
+  - rule: Submit form alamat
+    condition:
+      # Condition that form is active.
+      - active_loop: alamat_form
+    steps:
+      # Form is deactivated
+      - action: alamat_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      # The actions we want to run when the form is submitted.
+      - action: utter_order_complete_diantar
+      - action: action_submit_to_database

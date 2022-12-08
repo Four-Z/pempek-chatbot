@@ -1,6 +1,9 @@
 version: "3.1"
-
 nlu:
+- intent: start
+  examples: |
+    - /start
+    - start
 - intent: welcome_greet
   examples: |
     - selamat pagi
@@ -11,9 +14,15 @@ nlu:
     - p
     - ass
     - assalamualaikum
+    - assalamualaikum wr wb
+    - aslkm
     - syalom
     - coy
-
+    - halo
+    - hai
+    - selamat natal
+    - hello
+    - hi
 - intent: init_pempek_request
   examples: |
     - saya mau pesan pempek
@@ -27,19 +36,49 @@ nlu:
     - pempeknya masih ada?
     - pempeknyo ado?
     - masi ado dk pempekny?
-
+    - ado pempek apo?
+    - I want order to pempek
 - intent: pesanan_request
   examples: |
-    - Saya mau pesan [10](quantity) [pempek kapal selam](order_items)
-    - [7](quantity) [pempek adaan](order_items)
-    - [pempek lenjer](order_items) [3](quantity)
-
-- intent: pesanan_change
-  examples: |
-    - saya mau pempek lenjer
-    - saya mau ganti jenis pempek
-    - saya mau ganti jumlah pesanan menjadi 5
-
+    - saya mau pesan [10](quantity) [pempek kapal selam](order_items)
+    - pesen [pempek kapal selam](order_items) [2](quantity) ya
+    - [5](quantity) [pempek kapal selam](order_items)
+    - order [15](quantity) [pempek kapal selam](order_items)
+    - saya mau pesan [10](quantity) [pempek bulat](order_items)
+    - pesen [pempek bulat](order_items) [2](quantity) ya
+    - [5](quantity) [pempek bulat](order_items)
+    - order [15](quantity) [pempek bulat](order_items)
+    - saya mau pesan [10](quantity) [pempek telur](order_items)
+    - pesen [pempek telur](order_items) [2](quantity) ya
+    - [5](quantity) [pempek telur](order_items)
+    - order [15](quantity) [pempek telur](order_items)
+    - saya mau pesan [10](quantity) [pempek pistel](order_items)
+    - pesen [pempek pistel](order_items) [2](quantity) ya
+    - [5](quantity) [pempek pistel](order_items)
+    - order [15](quantity) [pempek pistel](order_items)
+    - saya mau pesan [10](quantity) [pempek kulit](order_items)
+    - pesen [pempek kulit](order_items) [2](quantity) ya
+    - [5](quantity) [pempek kulit](order_items)
+    - order [15](quantity) [pempek kulit](order_items)
+    - saya mau pesan [10](quantity) [pempek tahu](order_items)
+    - pesen [pempek tahu](order_items) [2](quantity) ya
+    - [5](quantity) [pempek tahu](order_items)
+    - order [15](quantity) [pempek tahu](order_items)
+    - saya mau pesan [10](quantity) [pempek keriting](order_items)
+    - pesen [pempek keriting](order_items) [2](quantity) ya
+    - [5](quantity) [pempek keriting](order_items)
+    - order [15](quantity) [pempek keriting](order_items)
+    - saya mau pesan [10](quantity) [otak otak](order_items)
+    - pesen [otak otak](order_items) [2](quantity) ya
+    - [5](quantity) [otak otak](order_items)
+    - order [15](quantity) [otak otak](order_items)
+    - saya mau pesan [10](quantity) [lenggang](order_items)
+    - pesen [lenggang](order_items) [2](quantity) ya
+    - [5](quantity) [lenggang](order_items)
+    - order [15](quantity) [lenggang](order_items)
+    - saya mau pesan [8](quantity) [pempek keriting](order_items)
+    - saya mau pesan [10](quantity) [pempek kapal selam](order_items)
+    - saya mau pesan [4](quantity) [pempek pistel](order_items)
 - intent: response_negative
   examples: |
     - tidak
@@ -54,7 +93,10 @@ nlu:
     - gjd
     - belum
     - blm
-
+    - salah
+    - tidak benar
+    - belum tepat
+    - ulang lagi
 - intent: response_positive
   examples: |
     - iya
@@ -69,12 +111,28 @@ nlu:
     - tepat
     - good
     - nice
-
+    - ya
+    - benar
+    - lanjut
+    - gas
+    - next
+    - dem
+    - iyo
+    - yoi
+    - yeah
+    - sure
+    - oke
+    - okay
+    - woke
+    - sudah
 - intent: response_nama_telepon
   examples: |
-    - faris dan 088278698769
-    - faris 088278698769
-
+    - [faris](name) dan [088278698769](phone)
+    - [faris](name) [088278698769](phone)
+    - nama saya [faris](name) dan no hp saya [088278698769](phone)
+    - atas nama [arya](name) [0895326375573](phone)
+    - [arya](name) [0895326375573](phone)
+    - [arya](name) [0812000000000](phone)
 - intent: pesanan_ambil_di_tempat
   examples: |
     - diambil di tempat
@@ -83,7 +141,13 @@ nlu:
     - ambl dtmpt
     - ditempat
     - ambil
-
+    - diambil
+    - ambek
+    - ambek di tempat
+    - otw sano
+    - ambil di lokasi
+    - cod
+    - baseng
 - intent: pesanan_diantar
   examples: |
     - diantar
@@ -91,7 +155,33 @@ nlu:
     - anter aja
     - anter ae mas
     - anterinlah
-
+    - antar
+    - diantar ke rumah
+    - antar ke rumah
+    - ke rumah
+    - digojekin
+    - antar ke kantor
+    - delivery
+    - dipaketin
+    - dikirim
+    - dikirim ke rumah
+    - di kirim
+    - kirim
+    - kirim bae
 - intent: response_alamat_pengiriman
   examples: |
-    - di jalan xxx no xx
+    - alamat saya ada di [jalan melati no 10](address)
+    - alamat di [jalan anggrek no 5 rt 02 rw 01 kecamatan indralaya](address)
+    - saya tinggal di [jalan mawar no 1](address)
+    - antar ke [jalan mawar no 1](address)
+    - tolong antar ke [jalan mawar no 1](address)
+    - alamat saya adalah [jalan melati no 10](address)
+    - alamat saya ada di [jalan anggrek no 1](address)
+    - kirim ke [jalan matahari no 2](address)
+    - ke [jalan bulan no 3](address)
+    - tolong kirim ke [kantor BNI](address)
+    - antarke [unsri](address)
+    - antarke [universitas sriwijaya](address)
+    - alamat saya di [samping jalan melati](address)
+    - alamat saya di [depan jalan melati, samping masjid al-ihsan](address)
+    - kirim ke [kantor pos](address)

@@ -1,84 +1,127 @@
-version: "3.1"
-
+version: '3.1'
 intents:
-  - welcome_greet
-  - init_pempek_request
-  - pesanan_request
-  - pesanan_change
-  - response_negative
-  - response_positive
-  - response_nama_telepon
-  - pesanan_ambil_di_tempat
-  - pesanan_diantar
-  - response_alamat_pengiriman
-
+- init_pempek_request
+- pesanan_ambil_di_tempat
+- pesanan_diantar
+- pesanan_request
+- response_alamat_pengiriman
+- response_nama_telepon
+- response_negative
+- response_positive
+- start
+- welcome_greet
 entities:
+- name
+- address
 - order_items
+- phone
 - quantity
+- jalan mawar no 1
 slots:
   order_items:
     type: text
     mappings:
     - type: from_entity
       entity: order_items
+      conditions:
+      - active_loop: pempek_form
   quantity:
     type: any
     mappings:
     - type: from_entity
       entity: quantity
+      conditions:
+      - active_loop: pempek_form
+  name:
+    type: any
+    mappings:
+    - type: from_entity
+      entity: name
+      conditions:
+      - active_loop: identitas_form
+  phone:
+    type: any
+    mappings:
+    - type: from_entity
+      entity: phone
+      conditions:
+      - active_loop: identitas_form
+  address:
+    type: any
+    mappings:
+    - type: from_entity
+      entity: address
+      conditions:
+      - active_loop: alamat_form
 forms:
   pempek_form:
     required_slots:
-        - order_items
-        - quantity
-
+    - order_items
+    - quantity
+  identitas_form:
+    required_slots:
+    - name
+    - phone
+  alamat_form:
+    required_slots:
+    - address
 responses:
   utter_welcome_greet:
-  - text: "Halo, Selamat datang di PempekBot, Ada yang bisa saya bantu?"
-
+  - text: Halo, Selamat datang di PempekBot, Ada yang bisa saya bantu?
   utter_pempek_request:
-  - text: "Baiklah, saat ini tersedia pempek:\n
-  - pempek kapal selam\n
-  - pempek adaan\n
-  - pempek bulat\n
-  - pempek telur kecil\n
-  - pempek pistel\n
-  - pempek pastel\n
-  - pempek kates\n
-  - pempek kulit\n
-  - pempek tahu\n
-  - pempek keriting\n
-  - otak-otak\n
-  - pempek lenggang\n
-  - pempek lenggang goreng\n
-  Pempek jenis apa yang ingin anda pesan?"
-
+  - text: |-
+      Baiklah, saat ini tersedia pempek:
+       - pempek kapal selam
+       - pempek bulat
+       - pempek telur
+       - pempek pistel
+       - pempek kulit
+       - pempek tahu
+       - pempek keriting
+       - otak-otak
+       - pempek lenggang
+      Pempek jenis apa yang ingin anda pesan?
+      <contoh: saya mau pesan **10** **pempek kapal selam**>
   utter_pempek_order_form:
-  - text: "Ok, baiklah, pesanan anda adalah\n{quantity} {order_items}\n
-  Apakah sudah betul?"
-
+  - text: |-
+      Ok, baiklah, pesanan anda adalah
+      **{quantity}** **{order_items}**
+      Apakah sudah betul?
   utter_pesanan_jenis:
-  - text: "Pempek apa yang kamu mau?"
-
+  - text: Pempek apa yang kamu mau?
   utter_order_confirm_negative:
-  - text: "Apa yang ingin kamu ganti?"
-
-  utter_extra_order:
-  - text: "Apakah kamu ingin menambah pesanan lagi?"
-
+  - text: Apa yang ingin kamu ganti?
   utter_nama_telepon:
-  - text: "Berikut detail pesanan anda\n{quantity} {order_items}\n
-  atas nama siapa dan berapa nomor hp anda?"
-
+  - text: |-
+      Berikut detail pesanan anda
+      **{quantity}** **{order_items}**
+      atas nama siapa dan berapa nomor hp anda?
+      <contoh: atas nama **faris** dan no hp saya **081200000000**>
   utter_pengiriman:
-  - text: "Kamu ingin pesanannya diantar atau diambil di tempat?"
-
-  utter_order_complete:
-  - text: "Baiklah, pesanan anda akan diproses dalam waktu 15 menit. Terima kasih sudah menggunakan PempekBot"
-
+  - text: Kamu ingin pesanannya diantar atau diambil di tempat?
+  utter_order_complete_diambil:
+  - text: |-
+      Baiklah, Berikut detail pesanan anda
+      **{quantity}** **{order_items}**
+      atas nama **{name}** dan nomer handphone **{phone}**
+      akan diproses dalam waktu 15 menit. Terima kasih sudah menggunakan PempekBot
   utter_alamat_pengiriman:
-  - text: "Mau diantar kemana?"
-
+  - text: Mau diantar kemana?
+  utter_order_complete_diantar:
+  - text: |-
+      Baiklah, Berikut detail pesanan anda
+      **{quantity}** **{order_items}**
+      atas nama **{name}** dan nomer handphone **{phone}**
+      akan diantar ke **{address}**. Terima kasih sudah menggunakan PempekBot
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+actions:
+- action_submit_to_database
+- utter_alamat_pengiriman
+- utter_nama_telepon
+- utter_order_complete_diantar
+- utter_pempek_order_form
+- utter_pempek_request
+- utter_pengiriman
+- utter_welcome_greet
